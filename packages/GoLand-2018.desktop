@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=2018.2
+Type=Application
+Name=GoLand 2018
+Name[zh_CN]=GoLand-2018.desktop
+Comment=GoLand 2018
+Comment[zh_CN]=GoLand 2018
+Icon=/opt/GoLand-2018.2.3/bin/goland.png
+Exec=/opt/GoLand-2018.2.3/bin/goland.sh %U
+Categories=Development;IDE;
+Terminal=false
+StartupNotify=true
+
