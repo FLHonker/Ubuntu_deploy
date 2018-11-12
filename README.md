@@ -32,6 +32,7 @@ Frank在历经3年的Linux开发和运维后，总结了Ubuntu版本下常用的
 7. shell命令行优化: [oh-my-zsh][15] + fonts + themes, [autojump][21], [saferm][22] 。
 8. Frank独家超级Vim： [vim-plus-plus][16] 。
 9.  SSR科学上网命令行工具： [ShadowsocksR Python][17], [ssr-helper][18] 。
+    关于VPS-SSR服务器环境搭建请参考[这里][23].
 10. [wine-QQ 2018解决方案（目前最完美）][19]
 11. [Hugo][20]博客环境。
 12. 安装完成之后的软件包清理工作。
@@ -44,10 +45,11 @@ Frank在历经3年的Linux开发和运维后，总结了Ubuntu版本下常用的
 
 ## 关于和鸣谢
 
-* 关于Frank，请访问博客: [frankliu624.me][23]
+* 关于Frank，请访问博客: [frankliu624.me][24]
 * email: <frankliu624@gmail.com>
 
-感谢开源社区、各位大神总结的各种繁琐的软件安装教程和脚本工具，使用过程中如有问题，希望您及时反馈帮助改正，感谢您的理解和支持！
+感谢开源社区、各位大神总结的各种繁琐的软件安装教程和脚本工具，感谢所有开源项目、贡献者！
+使用过程中如有问题，希望您及时反馈帮助改正，感谢您的理解和支持！
 如果您觉得对本工具满意，继续支持Frank为开源社区贡献好用的工具，并愿意给予一定打赏，请扫描下面二维码：
 <div align=center>
 <img src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/alipay.jpg" width=28% heigth=28% />
@@ -60,7 +62,7 @@ Frank在历经3年的Linux开发和运维后，总结了Ubuntu版本下常用的
 [2]: https://www.gnome-look.org/browse/cat/109/order/latest
 [3]: https://pytorch.org/get-started/locally/
 [4]: http://caffe.berkeleyvision.org/
-[5]: https://github.com/opencv+5\
+[5]: https://github.com/opencv
 [6]: https://www.google.cn/chrome/
 [7]: https://music.163.com/#/download
 [8]: https://www.jetbrains.com/go/
@@ -78,4 +80,5 @@ Frank在历经3年的Linux开发和运维后，总结了Ubuntu版本下常用的
 [20]: https://github.com/gohugoio/hugo
 [21]: https://github.com/joelthelion/autojump
 [22]: https://blog.csdn.net/F8qG7f9YD02Pe/article/details/79543316
-[23]: http://frankliu624.me
+[23]: https://github.com/FLHonker/autoVPS-ssr
+[24]: http://frankliu624.me

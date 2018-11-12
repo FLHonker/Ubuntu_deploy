@@ -19,7 +19,50 @@ then
     exit 1
 fi
 
+# 判断是否是ubuntu18.04LTS版本
+function is_ubuntu1804()
+{
+    version=$(cat /etc/lsb-release | grep "DISTRIB_RELEASE")
+    if [ ${version} == "DISTRIB_RELEASE=18.04" ]; then
+        echo 1
+    else
+        echo 0
+    fi
+}
+
+# 判断是否是64位版本
+function is_x64()
+{
+    version=$(getconf LONG_BIT)
+    if [ $version -eq 64 ]; then
+        echo 1
+    else
+        echo 0
+    fi
+}
+
+if [ is_x64 -ne 1 ]; then
+    echo "该脚本仅适用于64位Debian/Ubuntu系列！现在将退出安装！" | tee -a $logfile
+    exit 1
+fi
+
+# 判断命令是否执行安装成功
+function is_success()
+{
+    ok=$?  # 记录上一条命令成功与否
+    app_name=$1
+    if [ $ok -eq 0 ]; then
+        echo -e "$app_name 安装成功!" | tee -a $logfile
+    else
+        echo -e "$app_name 安装失败!" | tee -a $logfile
+    fi
+}
+
 echo -e "############ 安装部署前的准备工作 #############"
+
+# update OS
+sudo apt update
+sudo apt upgrade
 
 # 记录工作目录`Ubuntu_deploy/`
 workDir=$PWD
@@ -35,18 +78,7 @@ if [ ! -d packages ]; then
 　　mkdir packages
 fi
 # 在当前user的主目录下创建dev目录作为开发目录
-mkdir ~/dev
-
-# 判断是否是ubuntu18.04LTS版本
-function is_ubuntu1804()
-{
-    version=$(cat /etc/lsb-release | grep "DISTRIB_RELEASE")
-    if [ ${version} == "DISTRIB_RELEASE=18.04" ]; then
-        echo 1
-    else
-        echo 0
-    fi
-}
+mkdir $HOME/dev
 
 echo -e "################### 1. 首先安装一些必要的命令行工具 ##################"
 #为便于后续安装步骤需要，首先安装一些必要的命令行工具: git, ssh, g++, cmake, npm, zip, unzip, rar, unrar, tar, curl, wget等
@@ -64,9 +96,7 @@ unzip -o Griffin-Grub-Remix.zip
 # 进入目录安装
 cd Griffin-Grub-Remix
 sudo ./install.sh
-if [ $? -eq 0 ];then
-    echo -e "Griffin-Grub-Remix主题安装成功!" | tee -a $logfile
-fi
+is_success "Griffin-Grub-Remix主题"
 
 echo -e "#################### 3. 卸载自带不常用软件包 ####################"
 # 卸载libreoffices
@@ -80,12 +110,12 @@ sudo apt-get remove unity-webapps-common empathy brasero simple-scan gnome-mahjo
 echo -e "################### 4. 设置右键新建常用模板文件 ###################"
 # *.docx, *.xlsx, *.pptx这些会在安装wps后自动创建，这里我们只帮您创建文本文件模板
 # 根据系统语言进入模板文件存放目录
-if [ -d ~/Templates ];then
-    cd ~/Templates
+if [ -d $HOME/Templates ];then
+    cd $HOME/Templates
     touch txt.txt
     touch markdown.md
-elif [ -d ~/模板 ];then
-    cd ~/模板
+elif [ -d $HOME/模板 ];then
+    cd $HOME/模板
     touch txt.txt
     touch markdown.md
 fi
@@ -131,11 +161,11 @@ url_opencv="https://github.com/opencv/opencv/archive/3.4.2.tar.gz"
 url_contrib="https://github.com/opencv/opencv_contrib/archive/3.4.2.tar.gz"
 # 下载opencv-3.4.2，并解压到～/dev/
 wget ${url_opencv}
-tar -zxvf opencv-3.4.2.tar.gz -C ~/dev/
+tar -zxvf opencv-3.4.2.tar.gz -C $HOME/dev/
 # 下载contrib扩展模块，并解压到opencv目录
 wget ${url_contrib}
-tar -zxvf opencv_contrib-3.4.2.tar.gz -C ~/dev/opencv-3.4.2/
-cd ~/dev/opencv-3.4.2/    # 进入opencv源码目录
+tar -zxvf opencv_contrib-3.4.2.tar.gz -C $HOME/dev/opencv-3.4.2/
+cd $HOME/dev/opencv-3.4.2/    # 进入opencv源码目录
 mkdir build         # 创建编译生成目录
 mv opencv_contrib-3.4.2 opencv_contrib #修改目录名
 # 安装依赖，使用python3
@@ -158,7 +188,7 @@ cmake -D CMAKE_BUILD_TYPE=Release \
       -D WITH_EIGEN=ON \
       -D WITH_QT=ON \
       -D WITH_V4L=ON \
-      -D OPENCV_EXTRA_MODULES_PATH=~/dev/opencv-3.4.2/opencv_contrib/modules \
+      -D OPENCV_EXTRA_MODULES_PATH=$HOME/dev/opencv-3.4.2/opencv_contrib/modules \
       ..
 
 # 查看逻辑CPU的个数
@@ -193,7 +223,7 @@ else
     done
 fi
 
-echo -e "################### 6. Applications install ####################"
+echo -e "#################### 6. Applications install ####################"
 cd $workDir/packages/
 # APP.deb统一下载与安装函数 #
 function apps_installer()
@@ -250,42 +280,121 @@ wget https://download-cf.jetbrains.com/go/goland-2018.2.3.tar.gz
 sudo tar -zxvf goland-2018.2.3.tar.gz -C /opt/
 # 创建程序图标
 sudo cp -f ./GoLand-2018.desktop /usr/share/applications/
-echo -e "GoLand2018.2.3 安装成功！" | tee -a $logfile
+is_success GoLand2018
 
 # Eclipse
 cd $workDir/packages/
+echo -e "开始下载Eclipse2018..."
 wget http://eclipse.mirror.rafal.ca/oomph/epp/2018-09/Ra/eclipse-inst-linux64.tar.gz
 tar -zxvf eclipse-inst-linux64.tar.gz   # 解压出 eclipse-installer/
 cd eclipse-installer/
 # 执行安装，需要交互
-sudo ./eclipse-inst
+echo -e "Eclipse图像化安装需要您进行交互操作！" | tee -a $logfile
+echo -e "** 建议您将Eclipse安装到/opt/"
+./eclipse-inst
+is_success Eclipse
 
 # BaiduPCS-Go
 # 进入目录安装
 cd Griffin-Grub-Remix
 cd $workDir/packages/
 if [ ! -f BaiduPCS-Go-v3.5.6-linux-amd64.zip ];then
+    echo -e "开始下载BaiduPCS-Go..."
     wget https://github.com/iikira/BaiduPCS-Go/releases/download/v3.5.6/BaiduPCS-Go-v3.5.6-linux-amd64.zip
 fi
 # 解压，移动执行文件至bin
 sudo unzip -o BaiduPCS-Go-v3.5.6-linux-amd64.zip
 cd BaiduPCS-Go-v3.5.6-linux-amd64/
 sudo cp BaiduPCS-Go /bin/
+is_success BaiduPCS-Go
 
 # MEGA
+echo -e "请到MEGA官网自行下载适合您的版本，谢谢！" | tee -a $logfile
+echo -e "下载地址：https://mega.nz/sync" |tee -a $logfile
+
+# VSCode
+app_name="VSCode"
+deb_name="code_1.28.2-1539735992_amd64.deb"
+download_url="https://az764295.vo.msecnd.net/stable/7f3ce96ff4729c91352ae6def877e59c561f4850/code_1.28.2-1539735992_amd64.deb"
+apps_installer $app_name $deb_name $download_url
+
+# WPS
+app_name="WPS"
+deb_name="wps-office_10.1.0.6757_amd64.deb"
+download_url="http://kdl.cc.ksosoft.com/wps-community/download/6757/wps-office_10.1.0.6757_amd64.deb"
+apps_installer $app_name $deb_name $download_url
+
+# Sougou pinyin
+app_name="Sougou pinyin"
+deb_name="sogoupinyin_2.2.0.0108_amd64.deb"
+download_url="http://cdn2.ime.sogou.com/dl/index/1524572264/sogoupinyin_2.2.0.0108_amd64.deb?st=6ZT6M8QwPzYHpNnvz0vhEQ&e=1541993341&fn=sogoupinyin_2.2.0.0108_amd64.deb"
+apps_installer $app_name $deb_name $download_url
 
 
+echo -e "#################### 7. Shell优化 ###################"
 
+# Oh-my-zsh
+cd $workDir/packages/
+echo -e "开始下载安装oh-my-zsh..."
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+is_success oh-my-zsh
 
-#################### 7. Shell优化 ###################
 # autojump
 cd $workDir/packages/
+echo -e "开始下载安装autojump..."
 git clone https://github.com/joelthelion/autojump.git
 cd autojump/
 python3 ./install.py
+is_success autojump
 
 # saferm
+echo -e "开始下载安装saferm..."
 sudo wget https://github.com/lagerspetz/linux-stuff/blob/master/scripts/saferm.sh -P /bin
 sudo chmod +x /bin/safrm.sh
-echo -e "alias=saferm.sh" >> /etc/profile >> ~./bashrc
+echo -e "alias=saferm.sh" >> /etc/profile >> $HOME/.bashrc >> $HOME/.zshrc
+is_success saferm
 
+echo -e "############### 8. Frank独家超级Vim：[vim-plus-plus] ###############"
+cd $HOME/dev/
+echo -e "开始下载vim-plus-plus... 时间较长，请耐心等待..."
+git clone git@github.com:FLHonker/vim-plus-plus.git
+cd vim-plus-plus/
+sudo ./install.sh
+
+echo -e "################ 9. SSR科学上网命令行工具 ##################"
+cd /opt/
+sudo git clone https://github.com/shadowsocksr/shadowsocksr.git
+sudo npm install -g ssr-helper
+ssr config /opt/shadowsocksr
+is_success ssr-helper
+
+echo -e "############## 10. wine-QQ 2018解决方案（目前最完美） ############"
+cd $workDir/packages/
+# 10.1 下载安装deepin-wine-ubuntu
+echo -e "开始下载deepin-wine-ubuntu..."
+git clone https://github.com/wszqkzqk/deepin-wine-ubuntu.git
+cd deepin-wine-ubuntu/
+sudo ./insatll.sh
+is_success deepin-wine-ubuntu
+
+# 10.2 安装QQ
+app_name="deepin-QQ"
+deb_name="deepin.com.qq.im_8.9.19983deepin23_i386.deb"
+download_url="http://mirrors.aliyun.com/deepin/pool/non-free/d/deepin.com.qq.im/deepin.com.qq.im_8.9.19983deepin23_i386.deb"
+apps_installer $app_name $deb_name $download_url
+
+echo -e "################## 11. Hugo博客环境 ###################"
+# 创建go目录
+mkdir -p $HOME/go/src/
+cd $HOME/go/src/
+git clone https://github.com/gohugoio/hugo.git
+cd hugo
+go install
+is_success Hugo
+
+echo -e "#################12. 安装完成之后的软件包清理工作 #################"
+sudo apt autoremove
+sudo apt autoclean
+echo -e "所有的软件安装包均保存在$workDir/packages/,如需清理请删除即可。"
+
+echo -e "恭喜！强劲的Ubuntu开发办公环境搭建成功！尽情享用吧！" | tee -a $logfile
