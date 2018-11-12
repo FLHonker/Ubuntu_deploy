@@ -360,6 +360,7 @@ echo -e "开始下载vim-plus-plus... 时间较长，请耐心等待..."
 git clone git@github.com:FLHonker/vim-plus-plus.git
 cd vim-plus-plus/
 sudo ./install.sh
+is_success vim-plus-plus
 
 echo -e "################ 9. SSR科学上网命令行工具 ##################"
 cd /opt/
@@ -392,7 +393,7 @@ cd hugo
 go install
 is_success Hugo
 
-echo -e "#################12. 安装完成之后的软件包清理工作 #################"
+echo -e "################# 12. 安装完成之后的软件包清理工作 #################"
 sudo apt autoremove
 sudo apt autoclean
 echo -e "所有的软件安装包均保存在$workDir/packages/,如需清理请删除即可。"
