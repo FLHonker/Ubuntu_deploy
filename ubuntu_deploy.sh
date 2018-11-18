@@ -347,6 +347,23 @@ cd $workDir/packages/
 echo -e "开始下载安装oh-my-zsh..."
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 is_success oh-my-zsh
+echo -e "写入增强配置..."
+echo "
+# 基于文件后缀的别名
+alias -s {yml,yaml,cpp,c,py,go,txt,md}=vim
+
+# git别名
+g=git
+ga='git add'
+gaa='git add -A'
+gapa='git add --patch'
+gap='git apply'
+gau='git add --update'
+gcs='git commit -S'
+gcm='git commit -m'
+gpm='git push origin master'
+glg='git log --stat'
+" >> $HOME/.zshrc 
 
 # autojump
 cd $workDir/packages/
@@ -355,6 +372,11 @@ git clone https://github.com/joelthelion/autojump.git
 cd autojump/
 python3 ./install.py
 is_success autojump
+echo -e "
+# AutoJump
+. /usr/share/autojump/autojump.sh
+" >> $HOME/.bashrc >> $HOME/.zshrc
+is_success saferm
 
 # saferm
 echo -e "开始下载安装saferm..."
