@@ -355,14 +355,6 @@ alias -s {yml,yaml,cpp,c,py,go,txt,md}=vim
 # git别名
 g=git
 ga='git add'
-gaa='git add -A'
-gapa='git add --patch'
-gap='git apply'
-gau='git add --update'
-gcs='git commit -S'
-gcm='git commit -m'
-gpm='git push origin master'
-glg='git log --stat'
 " >> $HOME/.zshrc 
 
 # autojump
