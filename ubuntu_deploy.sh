@@ -374,7 +374,7 @@ is_success saferm
 echo -e "开始下载安装saferm..."
 sudo wget https://github.com/lagerspetz/linux-stuff/blob/master/scripts/saferm.sh -P /bin
 sudo chmod +x /bin/safrm.sh
-echo -e "alias=saferm.sh" >> /etc/profile >> $HOME/.bashrc >> $HOME/.zshrc
+echo -e "alias rm=saferm.sh" >> /etc/profile >> $HOME/.bashrc >> $HOME/.zshrc
 is_success saferm
 
 echo -e "############### 8. Frank独家超级Vim：[vim-plus-plus] ###############"
