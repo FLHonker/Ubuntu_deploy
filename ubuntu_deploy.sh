@@ -152,18 +152,12 @@ fi
 # golang
 sudo apt install golang
 
-# OpenJDK-1.8   ?????????????????????????????????????????????????
-# 出于历史原因，OracleJDK是上用闭源的，我们无法实用wget下载之，故暂时安装openjdk，
-# 对于一般开发者，两者差异不大。
+# Oracle jdk8
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get install oracle-java8-installer
 
-# cd $workDir/packages/
-# url_jdk="http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz"
-# wget ${url_jdk}
-# sudo tar -zxvf jdk-8u181-linux-x64.tar.gz -C /opt/
-sudo apt-get install openjdk-8-jdk
-
-
-
+# OpenCV
 echo -e "OpenCV3.4.2+contrib - 源码编译安装 for C++&python3"
 cd $workDir/packages   # 下载到packages目录
 url_opencv="https://github.com/opencv/opencv/archive/3.4.2.tar.gz"
