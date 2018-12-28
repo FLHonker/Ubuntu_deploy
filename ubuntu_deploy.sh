@@ -13,8 +13,7 @@
 
 # 要求使用root权限运行脚本
 ROOT_UID=0
-if[ `id -u` -ne $ROOT_UID ]
-then
+if[ `id -u` -ne $ROOT_UID ];then
     echo "执行权限不够!请使用sudo运行！"
     exit 1
 fi
