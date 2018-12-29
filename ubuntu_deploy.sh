@@ -379,8 +379,12 @@ sudo ./install.sh
 is_success vim-plus-plus
 
 echo -e "################ 9. SSR科学上网命令行工具 ##################"
-cd /opt/
-sudo git clone https://github.com/shadowsocksr/shadowsocksr.git
+# cd /opt/
+# sudo git clone https://github.com/shadowsocksr/shadowsocksr.git
+wget https://github.com/FLHonker/Ubuntu_deploy/raw/master/packages/shadowsocksr.zip -P $workDir/packages/
+cd $workDir/packages/
+unzip shadowsocksr.zip
+sudo cp -R shadowsocksr /opt/
 sudo npm install -g ssr-helper
 ssr config /opt/shadowsocksr
 is_success ssr-helper
