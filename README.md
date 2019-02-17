@@ -29,7 +29,7 @@ Frank在历经3年的Linux开发和运维后，总结了Ubuntu版本下常用的
 4. dev命令行工具：git, ssh, g++, cmake, npm, zip, unzip, rar, unrar, tar, curl, wget, ffmpeg 。
 5. dev开发环境（C\/C++，Java，Python2，Python3,go,octave为主）: gcc, g++, make, build-essential, python2, python3, pip2, pip3, jdk1.8, go-1.10, [PyTorch][3], numpy, [caffe-cpu][4], turtle, [OpenCV3.4.2 + contrib][5] 。
 6. 办公软件与IDE：VLC, uGet, [Chrome][6], [网易云音乐][7], [GoLand2018][8], [Eclipse][9], [BaiduPCS-Go][10], [MEGA][11], [VSCode][12], [WPS][13], [搜狗输入法][14] 。
-7. shell命令行优化: [oh-my-zsh][15] + fonts + themes, [autojump][21], [saferm][22] 。
+7. shell命令行优化: [oh-my-zsh][15] + fonts + themes, [autojump][21], [saferm][22]， [lsix][25] 。
 8. Frank独家超级Vim： [vim-plus-plus][16] 。
 9.  SSR科学上网命令行工具： [ShadowsocksR Python][17], [ssr-helper][18] 。
     关于VPS-SSR服务器环境搭建请参考[这里][23].
@@ -82,3 +82,4 @@ Frank在历经3年的Linux开发和运维后，总结了Ubuntu版本下常用的
 [22]: https://blog.csdn.net/F8qG7f9YD02Pe/article/details/79543316
 [23]: https://github.com/FLHonker/autoVPS-ssr
 [24]: http://frankliu624.me
+[25]: https://github.com/hackerb9/lsix

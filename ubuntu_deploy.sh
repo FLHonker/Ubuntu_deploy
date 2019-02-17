@@ -370,6 +370,14 @@ sudo chmod +x /bin/safrm.sh
 echo -e "alias rm=saferm.sh" >> /etc/profile >> $HOME/.bashrc >> $HOME/.zshrc
 is_success saferm
 
+# lsix - 终端显示缩略图
+sudo apt install imagemagick
+cd $workDir/packages/
+wget https://github.com/hackerb9/lsix/archive/master.zip
+unzip master.zip
+sudo cp lsix-master/lsix /usr/local/bin/
+sudo chmod +x /usr/local/bin/lsix
+
 echo -e "############### 8. Frank独家超级Vim：[vim-plus-plus] ###############"
 cd $HOME/dev/
 echo -e "开始下载vim-plus-plus... 时间较长，请耐心等待..."
