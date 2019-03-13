@@ -123,7 +123,7 @@ echo -e "##################### 5. dev开发环境 #########W############"
 # C++ dev
 sudo apt install gcc g++ make build-essential
 # Python, py的numpy、pyTorch、turtle等库和包默认都是安装使用Python3的
-sudo apt install python python3 python-pip python3-pip
+sudo apt install python python3 python-pip python3-pip python3-dev python3-setuptools
 # numpy for python2-3 setup
 sudo pip install numpy
 sudo pip3 isntall numpy
@@ -369,6 +369,12 @@ sudo wget https://github.com/lagerspetz/linux-stuff/blob/master/scripts/saferm.s
 sudo chmod +x /bin/safrm.sh
 echo -e "alias rm=saferm.sh" >> /etc/profile >> $HOME/.bashrc >> $HOME/.zshrc
 is_success saferm
+
+# thefuck
+sudo apt install python3-dev python3-pip python3-setuptools
+sudo pip3 install thefuck
+echo -e "eval $(thefuck --alias fuck)" >> /etc/profile >> $HOME/.bashrc >> $HOME/.zshrc
+source $HOME/.zshrc
 
 # lsix - 终端显示缩略图
 sudo apt install imagemagick
