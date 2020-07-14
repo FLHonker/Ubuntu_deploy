@@ -45,8 +45,7 @@ Frank在历经3年的Linux开发和运维后，总结了Ubuntu版本下常用的
 
 ## 关于和鸣谢
 
-* 关于Frank，请访问博客: [frankliu624.me][24]
-* email: <frankliu624@gmail.com>
+* email: <frankliu624@outlook.com>
 
 感谢开源社区、各位大神总结的各种繁琐的软件安装教程和脚本工具，感谢所有开源项目、贡献者！
 使用过程中如有问题，希望您及时反馈帮助改正，感谢您的理解和支持！
@@ -81,6 +80,5 @@ Frank在历经3年的Linux开发和运维后，总结了Ubuntu版本下常用的
 [21]: https://github.com/joelthelion/autojump
 [22]: https://blog.csdn.net/F8qG7f9YD02Pe/article/details/79543316
 [23]: https://github.com/FLHonker/autoVPS-ssr
-[24]: http://frankliu624.me
 [25]: https://github.com/hackerb9/lsix
 [26]: https://github.com/nvbn/thefuck
