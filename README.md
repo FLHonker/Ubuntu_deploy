@@ -2,7 +2,7 @@
 
 Frank在历经3年的Linux开发和运维后，总结了Ubuntu版本下常用的易安装或者不易安装的好用的、好玩的、实用的、强力推荐的软件包和插件的安装步骤，并将其整合为一键化脚本，方便广大Linux爱好者和开发者在新装或者重装Ubuntu系统后一系列繁琐的环境搭建任务，以有助于把宝贵的时间用在开发和研究上面，避免一些不必要的麻烦。
 
-**需要说明的是：** 本工具是Frank根据同行喜好和需求整合的一些常用软件包和插件的安装部署方案，开发环境适用于C\/C++、Python2、Python3、OpenCV3.4.x、Java1.8、Go1.10、Octave等，如果不太符合您的需要，可以自行进行选择和裁剪。另外，Frank一直以来使用Ubuntu版本，从`14.04LTS`一直用到`18.04LTS`，对于更低版本的Ubuntu或者其他的Linux分支可能有些不兼容，请您在确保自己有足够能力解决突发情况的前提下谨慎使用，如出现任何疑问或者难题，可以联系[Frank][1]帮您解决，也希望您有能力的话参与完善该项目为开源社区贡献力量：<frankliu624@gmail.com>。感谢您的使用和支持！
+**需要说明的是：** 本工具是Frank根据同行喜好和需求整合的一些常用软件包和插件的安装部署方案，开发环境适用于C\/C++、Python2、Python3、OpenCV3.4.x、Java1.8、Go1.10、Octave等，如果不太符合您的需要，可以自行进行选择和裁剪。另外，Frank一直以来使用Ubuntu版本，从`14.04LTS`一直用到`18.04LTS`，对于更低版本的Ubuntu或者其他的Linux分支可能有些不兼容，请您在确保自己有足够能力解决突发情况的前提下谨慎使用，如出现任何疑问或者难题，可以联系[Frank][1]帮您解决，也希望您有能力的话参与完善该项目为开源社区贡献力量：<frankliu624@outlook.com>。感谢您的使用和支持！
 
 ## 使用说明
 
@@ -50,11 +50,6 @@ Frank在历经3年的Linux开发和运维后，总结了Ubuntu版本下常用的
 感谢开源社区、各位大神总结的各种繁琐的软件安装教程和脚本工具，感谢所有开源项目、贡献者！
 使用过程中如有问题，希望您及时反馈帮助改正，感谢您的理解和支持！
 如果您觉得对本工具满意，继续支持Frank为开源社区贡献好用的工具，并愿意给予一定打赏，请扫描下面二维码：
-<div align=center>
-<img src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/alipay.jpg" width=28% heigth=28% />
-&nbsp&nbsp&nbsp&nbsp&nbsp
-<img src="https://res.cloudinary.com/flhonker/image/upload/flhonker-hugo/logo/wechat_facetoface_collect_qrcode_1541664905560.png" width=28% heigth=28% />
-</div>
 
 
 [1]: https://www.gnome-look.org/p/1237117/
